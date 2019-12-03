@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import static estrutura.Tela.GROUNDY;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
@@ -16,39 +17,43 @@ public class Personagem {
     private float speedY = 0;
     private Animacao PersonRun;
     private int pos = 2;
-   
+    private Rectangle col;
    
 public Personagem(){
     PersonRun = new Animacao(200);
     PersonRun.addFrame(Resource.getResourceImage("src/resources/sprites/Chrono_run_balance1.png"));
     PersonRun.addFrame(Resource.getResourceImage("src/resources/sprites/Chrono_run_balance2.png"));
-    
+    col = new Rectangle();
     
    }
    
-public void update(){
-    PersonRun.update();
-       /*
-        if( x >= GROUNDY -65){
-            speedY = 0;
-            x = GROUNDY - 65;
-        }else{
-            speedY+=0.5;
-            x+=speedY;
-            }
-    */
+        public void update(){
+            PersonRun.update();
+               col.x = (int)x;
+               col.y = (int)y;
+               col.width = PersonRun.getFrame().getWidth(); 
+               col.height = PersonRun.getFrame().getHeight(); 
+               /*
+                if( x >= GROUNDY -65){
+                    speedY = 0;
+                    x = GROUNDY - 65;
+                }else{
+                    speedY+=0.5;
+                    x+=speedY;
+                    }
+            */
    }
+        public Rectangle getbound(){
+        return col;
+                }
 
-   public void draw(Graphics g){
-       
+   public void draw(Graphics g){       
         g.setColor(Color.black);
         //coordenadas x, coordenadas x, largura, altura
         g.drawRect((int) getX()  ,(int) getY()  ,PersonRun.getFrame().getWidth()  ,PersonRun.getFrame().getHeight());
         g.drawImage(PersonRun.getFrame(),(int) x,(int) y,  null);
        
     }
-   
-   
     /*
    
     public void jump(){

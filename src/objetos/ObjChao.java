@@ -29,6 +29,15 @@ public class ObjChao {
         }        
     }
         
+    
+    
+    public void draw(Graphics g){
+        for(ImgChao imgChao: lisImg){
+            g.drawImage(imgChao.imagem, 252, imgChao.posY, null);
+       }
+       
+    }
+    
     public void update(){
         for(ImgChao imgChao: lisImg){
             
@@ -50,14 +59,6 @@ public class ObjChao {
            
         }
       
-    }
-    
-    public void draw(Graphics g){
-        for(ImgChao imgChao: lisImg){
-            g.drawImage(imgChao.imagem, 252, imgChao.posY, null);    
-             
-       }
-       
     }
     
    

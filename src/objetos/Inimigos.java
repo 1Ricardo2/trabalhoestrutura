@@ -3,6 +3,7 @@ package objetos;
 
 import Util.Resource;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
@@ -12,12 +13,16 @@ public class Inimigos {
     private int x;
     private int y;
     private Random aleatorio;
+    private Rectangle col;
+    
     
     public Inimigos(){
         aleatorio = new Random();
-        y = 50;
+        y = -500 ;
         x = 465;
         Inimigo = Resource.getResourceImage("src/resources/sprites/guarda.png");
+        col = new Rectangle();
+        
     }
     
     public void draw(Graphics g){
@@ -44,7 +49,16 @@ public class Inimigos {
             break;
         }
         }
+       col.x = x;
+       col.y = y;
+       col.width = Inimigo.getWidth();
+       col.height = Inimigo.getHeight();
+       
+       
         
+    }
+    public Rectangle getbound(){
+            return col;
     }
 
     public BufferedImage getInimigo() {

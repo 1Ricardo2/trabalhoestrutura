@@ -54,6 +54,9 @@ public class Tela extends JPanel implements Runnable, KeyListener {
                 chao.update();
                 arv.update();
                 guarda.update();
+                if(guarda.getbound().intersects(person.getbound())){
+                    System.exit(0);
+                }
                 repaint();
                 Thread.sleep(20);
             }catch (InterruptedException ex) {
