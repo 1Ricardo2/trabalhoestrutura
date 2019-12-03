@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.input.KeyCode;
 import javax.swing.JPanel;
+import objetos.Arvores;
 import objetos.Inimigos;
 import objetos.ObjChao;
 import sun.java2d.pipe.DrawImage;
@@ -24,45 +25,20 @@ public class Tela extends JPanel implements Runnable, KeyListener {
     public static float GROUNDY; //Meio da tela
     private Thread thread;
     private Personagem person;
-   
-    private ObjChao chao;
-    private List<Arvore> lisArve;
-    private List<Arvore> lisArvd;
-    private BufferedImage arve, arvd;
-    int numDaSeq;
-    private Arvore arvoree;
-    private Arvore arvored;
     private Inimigos guarda;
+    private ObjChao chao;
+    private Arvores arv;
+    
+    
     
     public Tela(){
             thread  =   new Thread(this);
             person  =   new Personagem();
             GROUNDY =   (float)512.0;
-            
             chao    =   new ObjChao(this);
             guarda  =   new Inimigos();
+            arv     =   new Arvores();
             
-            arve = Resource.getResourceImage("src/resources/sprites/arvores_e.png");
-            arvd = Resource.getResourceImage("src/resources/sprites/arvores_d.png");
-            lisArve = new ArrayList<Arvore>();
-            lisArvd = new ArrayList<Arvore>();
-            
-            numDaSeq = 768 / arve.getHeight() + 2;
-            
-            for (int i = 0; i < numDaSeq; i++) {
-                arvoree = new Arvore();
-                arvoree.posY  =  i * arve.getHeight();
-                arvoree.imagem = arve;
-                lisArve.add(arvoree);
-                
-        }        
-            for (int i = 0; i < numDaSeq; i++) {
-                arvored = new Arvore();
-                arvored.posY  =  i * arvd.getHeight();
-                arvored.imagem = arvd;
-                lisArvd.add(arvored);
-                
-        } 
     
     }
     
@@ -76,8 +52,7 @@ public class Tela extends JPanel implements Runnable, KeyListener {
        while (true) {
            try{ person.update();
                 chao.update();
-                arvoree.updatee();
-                arvored.updated();
+                arv.update();
                 guarda.update();
                 repaint();
                 Thread.sleep(20);
@@ -88,37 +63,31 @@ public class Tela extends JPanel implements Runnable, KeyListener {
     }
    @Override
    public void paint(Graphics g){
-        g.setColor(Color.white);
-        g.fillRect(0, 0, getWidth(), getHeight());
         
-        //g.drawLine((int)GROUNDY, 0, (int)GROUNDY, getWidth());
+        g.fillRect(0, 0, getWidth(), getHeight());
         chao.draw(g);
+        arv.draw(g);
         guarda.draw(g);
-        for(Arvore arvore: lisArve){
-            g.drawImage(arvore.imagem, -290, arvore.posY, null);
-       }
-        for(Arvore arvore: lisArvd){
-            g.drawImage(arvore.imagem, 757, arvore.posY, null);
-       }
         person.draw(g);
    }
-
-@Override
-public void keyTyped(KeyEvent ke) {
+   
+   
+    @Override
+    public void keyTyped(KeyEvent ke) {
     }
-
-@Override
-public void keyPressed(KeyEvent ke) {
-    person.mover(ke);
-    chao.asd(ke);
     
-           int intKey = ke.getKeyCode();
-           if (intKey == KeyEvent.VK_ESCAPE){
-          System.exit(0);
+    
+    @Override
+    public void keyPressed(KeyEvent ke) {
+        person.mover(ke);
+        chao.asd(ke);
+
+            int intKey = ke.getKeyCode();
+            if (intKey == KeyEvent.VK_ESCAPE){
+            System.exit(0);
                
            }
-
-           }
+    }
 
 
 @Override
@@ -126,38 +95,7 @@ public void keyReleased(KeyEvent ke) {
            
     }
     
-    private class Arvore{
-        private int posY;
-        BufferedImage imagem;
-        
-        public void updatee(){
-            for(Arvore arvore: lisArve){
-                arvore.posY +=15;}
-            Arvore ult = lisArve.get(2);
-        
-        if( ult.posY > 768){
-            ult.posY = lisArve.get(0).posY - arve.getHeight();
-            
-            lisArve.add(0,ult);
-            
-            lisArve.remove(lisArve.size()-1);
-                }
-            }
-        public void updated(){
-            for(Arvore arvore: lisArvd){
-                arvore.posY +=15;}
-            
-        Arvore ult = lisArvd.get(2);
-        
-        if( ult.posY > 768){
-            ult.posY = lisArvd.get(0).posY - arvd.getHeight();
-            
-            lisArvd.add(0,ult);
-            
-            lisArvd.remove(lisArvd.size()-1);
-                }
-            }
-        }
+    
     }
     
 

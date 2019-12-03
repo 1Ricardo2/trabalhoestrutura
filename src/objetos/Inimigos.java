@@ -23,6 +23,7 @@ public class Inimigos {
     public void draw(Graphics g){
         g.drawImage(Inimigo,x,y,null);
     }
+    
     public void update(){
         int i = aleatorio.nextInt(3);
         y += 15;
@@ -30,19 +31,36 @@ public class Inimigos {
             y = -100;
           System.out.println(i);
         switch(i){
-            case 0:  x = 302;
+            case 0:  x = 292;
             break;
             
-            case 1:  x = 495;
+            case 1:  x = 465;
             break;
             
-            case 2:  x = 688;
+            case 2:  x = 648;
             break;
             
-            default: x = 495;
+            default: x = 465;
             break;
         }
         }
         
     }
+
+    public BufferedImage getInimigo() {
+        return Inimigo;
+    }
+
+    public void setInimigo(BufferedImage Inimigo) {
+        this.Inimigo = Inimigo;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+    
 }

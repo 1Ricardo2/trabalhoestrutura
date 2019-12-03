@@ -18,7 +18,6 @@ public class ObjChao {
         
     public ObjChao(Tela game){
             chao1 = Resource.getResourceImage("src/resources/sprites/grass1.png");
-            
             lisImg = new ArrayList<ImgChao>();
             numDaSeq = 768 / chao1.getHeight() + 2;
             
