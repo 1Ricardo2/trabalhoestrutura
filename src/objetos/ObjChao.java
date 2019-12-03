@@ -18,7 +18,7 @@ public class ObjChao {
         
     public ObjChao(Tela game){
             chao1 = Resource.getResourceImage("src/resources/sprites/grass1.png");
-            lisImg = new ArrayList<ImgChao>();
+            lisImg = new ArrayList<>();
             numDaSeq = 768 / chao1.getHeight() + 2;
             
         for (int i = 0; i < numDaSeq; i++) {
@@ -32,8 +32,8 @@ public class ObjChao {
     
     
     public void draw(Graphics g){
-        for(ImgChao imgChao: lisImg){
-            g.drawImage(imgChao.imagem, 252, imgChao.posY, null);
+       for (int i=0; i<lisImg.size(); i++) {
+            g.drawImage(lisImg.get(i).imagem, 252, lisImg.get(i).posY, null);
        }
        
     }

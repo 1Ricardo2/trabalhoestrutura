@@ -26,8 +26,8 @@ public class Arvores {
     
             arve = Resource.getResourceImage("src/resources/sprites/arvores_e.png");
             arvd = Resource.getResourceImage("src/resources/sprites/arvores_d.png");
-            lisArve = new ArrayList<Arvore>();
-            lisArvd = new ArrayList<Arvore>();
+            lisArve = new ArrayList<>();
+            lisArvd = new ArrayList<>();
             
             numDaSeq = 768 / arve.getHeight() + 2;
             
@@ -67,11 +67,12 @@ public class Arvores {
     }
     
     public void draw(Graphics g){
-        /*for(Arvore arvore: lisArve){
-            g.drawImage(arvore.imagem, -290, arvore.posY, null);
-       }*/
-        for(Arvore arvore: lisArvd){
-            g.drawImage(arvore.imagem, 757, arvore.posY, null);
+        //for(Arvore arvore: lisArve){
+        for (int i=0; i<lisArve.size(); i++) {
+            g.drawImage(lisArve.get(i).imagem, -290, lisArve.get(i).posY, null);
+       }
+        for (int i=0; i<lisArvd.size(); i++) {
+            g.drawImage(lisArve.get(i).imagem, 757, lisArve.get(i).posY, null);
        }
     }
     
