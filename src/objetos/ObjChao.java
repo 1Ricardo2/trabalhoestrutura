@@ -1,13 +1,13 @@
 package objetos;
 
 import Util.Resource;
-import estrutura.Tela;
+
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 public class ObjChao {
         private List<ImgChao> lisImg;
@@ -16,7 +16,7 @@ public class ObjChao {
         int vel = -15;
        
         
-    public ObjChao(Tela game){
+    public ObjChao(){
             chao1 = Resource.getResourceImage("src/resources/sprites/grass1.png");
             lisImg = new ArrayList<>();
             numDaSeq = 768 / chao1.getHeight() + 2;

@@ -1,62 +1,47 @@
 package estrutura;
 
-import objetos.Personagem;
-import Util.Resource;
+
 //import static estrutura.Janela.SCREEN_WIDTH;
-import java.awt.Color;
+
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.scene.input.KeyCode;
 import javax.swing.JPanel;
-import objetos.Arvores;
-import objetos.Inimigos;
-import objetos.ObjChao;
-import sun.java2d.pipe.DrawImage;
-
+import objetos.GameOver;
+import objetos.Jogo;
+import objetos.Menu;
 
 public class Tela extends JPanel implements Runnable, KeyListener {
     public static final float GRAVITY = 01f;
-    public static float GROUNDY; //Meio da tela
     private Thread thread;
-    private Personagem person;
-    private Inimigos guarda;
-    private ObjChao chao;
-    private Arvores arv;
-    
-    
+    private Jogo game;
+    private Menu menu;
+    private GameOver go;
+    public static String estado;
+    //valores possiveis: "jogo", "menu", "gameover";
     
     public Tela(){
             thread  =   new Thread(this);
-            person  =   new Personagem();
-            GROUNDY =   (float)512.0;
-            chao    =   new ObjChao(this);
-            guarda  =   new Inimigos();
-            arv     =   new Arvores();
-            
-    
+            game    =   new Jogo();
+            menu    =   new Menu();
+            go      =   new GameOver();
+            estado  =   "menu";
     }
-    
     public void iniciar(){
         thread.start();
     }
     
-   
   @Override
-   public void run(){  
+   public void run(){
        while (true) {
-           try{ person.update();
-                chao.update();
-                arv.update();
-                guarda.update();
-                if(guarda.getbound().intersects(person.getbound())){
-                    System.exit(0);
+           try{ 
+                if(estado.equalsIgnoreCase("jogo")){
+                    game.update();
+                        if(game.getGuarda().getbound().intersects(game.getPerson().getbound())){
+                            estado = "gameover";
+                            }
                 }
+                System.out.println(estado);
                 repaint();
                 Thread.sleep(20);
             }catch (InterruptedException ex) {
@@ -64,16 +49,18 @@ public class Tela extends JPanel implements Runnable, KeyListener {
             }
         }
     }
+   
    @Override
    public void paint(Graphics g){
+       if(estado.equalsIgnoreCase("jogo")){
+            game.draw(g);
+        }else if(estado.equalsIgnoreCase("menu")){
+            menu.draw(g);
+        }else{
+        go.draw(g);
+        }
         
-        g.fillRect(0, 0, getWidth(), getHeight());
-        chao.draw(g);
-        arv.draw(g);
-        guarda.draw(g);
-        person.draw(g);
    }
-   
    
     @Override
     public void keyTyped(KeyEvent ke) {
@@ -82,23 +69,21 @@ public class Tela extends JPanel implements Runnable, KeyListener {
     
     @Override
     public void keyPressed(KeyEvent ke) {
-        person.mover(ke);
-        chao.asd(ke);
-
-            int intKey = ke.getKeyCode();
-            if (intKey == KeyEvent.VK_ESCAPE){
-            System.exit(0);
-               
-           }
+        if(estado.equalsIgnoreCase("jogo")){
+             game.acoes(ke);
+        }else if(estado.equalsIgnoreCase("menu")){ 
+            menu.acoes(ke);
+         }else{
+            go.acoes(ke);
+        }
+         
     }
-
 
 @Override
 public void keyReleased(KeyEvent ke) { 
            
     }
-    
-    
-    }
+
+}
     
 

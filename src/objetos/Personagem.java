@@ -5,7 +5,7 @@ import Util.Resource;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import static estrutura.Tela.GROUNDY;
+//mport static estrutura.Tela.GROUNDY;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -62,7 +62,7 @@ public Personagem(){
         }
     
     */
-   public void mover(KeyEvent ke){
+   public void acoes(KeyEvent ke){
             if(pos!=1){
              if(ke.getKeyCode() == KeyEvent.VK_LEFT || ke.getKeyCode() == KeyEvent.VK_A ){
                 x-=193;
