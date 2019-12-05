@@ -16,8 +16,8 @@ public class Janela extends JFrame {
         telaDeJogo = new Tela();
         add(telaDeJogo);
 	addKeyListener(telaDeJogo);
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setUndecorated(true);
+        //setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //setUndecorated(true);
        
     }
     public void iniciar(){
