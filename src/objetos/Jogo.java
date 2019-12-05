@@ -2,6 +2,8 @@ package objetos;
 
 
 import estrutura.Tela;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
@@ -30,8 +32,13 @@ public class Jogo {
     public void draw(Graphics g){
         chao.draw(g);
         arv.draw(g);
+        
         guarda.draw(g);
         person.draw(g);
+        //g.setFont(new Font("Courier", Font.BOLD + Font.ITALIC, 20));
+        g.setColor(Color.RED);
+        g.drawString(Integer.toString(Personagem.score), 10, 10);
+       
        
     }
     

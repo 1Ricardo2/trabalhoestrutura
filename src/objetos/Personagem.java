@@ -16,14 +16,16 @@ public class Personagem {
     private float y = 550;
     private float speedY = 0;
     private Animacao PersonRun;
-    private int pos = 2;
+    public int pos = 2;
     private Rectangle col;
-   
+    public static int score;
+    
 public Personagem(){
     PersonRun = new Animacao(200);
     PersonRun.addFrame(Resource.getResourceImage("src/resources/sprites/Chrono_run_balance1.png"));
     PersonRun.addFrame(Resource.getResourceImage("src/resources/sprites/Chrono_run_balance2.png"));
     col = new Rectangle();
+    score = 0;
     
    }
    
@@ -33,6 +35,7 @@ public Personagem(){
                col.y = (int)y;
                col.width = PersonRun.getFrame().getWidth(); 
                col.height = PersonRun.getFrame().getHeight(); 
+               score++;
                /*
                 if( x >= GROUNDY -65){
                     speedY = 0;
@@ -63,6 +66,8 @@ public Personagem(){
     
     */
    public void acoes(KeyEvent ke){
+       
+       
             if(pos!=1){
              if(ke.getKeyCode() == KeyEvent.VK_LEFT || ke.getKeyCode() == KeyEvent.VK_A ){
                 x-=193;

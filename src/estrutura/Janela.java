@@ -4,14 +4,14 @@ package estrutura;
 import javax.swing.JFrame;
 
 public class Janela extends JFrame {
-        public static final int SCREEN_WIDTH = 500;
+        public static final int SCREEN_WIDTH = 1024;
         private Tela telaDeJogo;
 
     public Janela(){
         super("Java T-Rex game");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-        setLocation(600, 0);
+        setLocation(0, 0);
         setSize(SCREEN_WIDTH, 768);
         telaDeJogo = new Tela();
         add(telaDeJogo);

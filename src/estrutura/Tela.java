@@ -16,7 +16,7 @@ public class Tela extends JPanel implements Runnable, KeyListener {
     private Thread thread;
     private Jogo game;
     private Menu menu;
-    private GameOver go;
+    //private GameOver go;
     public static String estado;
     //valores possiveis: "jogo", "menu", "gameover";
     
@@ -24,7 +24,7 @@ public class Tela extends JPanel implements Runnable, KeyListener {
             thread  =   new Thread(this);
             game    =   new Jogo();
             menu    =   new Menu();
-            go      =   new GameOver();
+           // go      =   new GameOver();
             estado  =   "menu";
     }
     public void iniciar(){
@@ -34,14 +34,17 @@ public class Tela extends JPanel implements Runnable, KeyListener {
   @Override
    public void run(){
        while (true) {
-           try{ 
-                if(estado.equalsIgnoreCase("jogo")){
+           try{ game.update();
+           
+                /*if(estado.equalsIgnoreCase("jogo")){*/
                     game.update();
                         if(game.getGuarda().getbound().intersects(game.getPerson().getbound())){
-                            estado = "gameover";
+                            //estado = "menu";
+                            System.exit(0);
                             }
-                }
-                System.out.println(estado);
+//                }
+                
+                
                 repaint();
                 Thread.sleep(20);
             }catch (InterruptedException ex) {
@@ -52,13 +55,15 @@ public class Tela extends JPanel implements Runnable, KeyListener {
    
    @Override
    public void paint(Graphics g){
-       if(estado.equalsIgnoreCase("jogo")){
+       
+       game.draw(g);
+       /*if(estado.equalsIgnoreCase("jogo")){
             game.draw(g);
         }else if(estado.equalsIgnoreCase("menu")){
             menu.draw(g);
         }else{
         go.draw(g);
-        }
+        }*/
         
    }
    
@@ -69,14 +74,14 @@ public class Tela extends JPanel implements Runnable, KeyListener {
     
     @Override
     public void keyPressed(KeyEvent ke) {
-        if(estado.equalsIgnoreCase("jogo")){
+        /*if(estado.equalsIgnoreCase("jogo")){
              game.acoes(ke);
         }else if(estado.equalsIgnoreCase("menu")){ 
             menu.acoes(ke);
          }else{
             go.acoes(ke);
-        }
-         
+        }*/
+        game.acoes(ke);
     }
 
 @Override

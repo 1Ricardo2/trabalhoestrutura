@@ -49,7 +49,7 @@ public class Arvores {
     public void update(){
     //atualização das arvores da esquerda
             for(Arvore arvore: lisArve){
-                arvore.posY +=15;}
+                arvore.posY +=10;}
                 Arvore ult = lisArve.get(2);
                     if( ult.posY > 768){
                         ult.posY = lisArve.get(0).posY - arve.getHeight();
@@ -58,7 +58,7 @@ public class Arvores {
         }
     //atualização da arvores da direita    
             for(Arvore arvore: lisArvd){
-                arvore.posY +=15;}
+                arvore.posY +=10;}
                 Arvore ult1 = lisArvd.get(2);
                     if( ult1.posY > 768){
                         ult1.posY = lisArvd.get(0).posY - arvd.getHeight();

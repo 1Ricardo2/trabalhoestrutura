@@ -13,7 +13,7 @@ public class ObjChao {
         private List<ImgChao> lisImg;
         private BufferedImage chao1, chao2, chao3;
         int numDaSeq;
-        int vel = -15;
+        int vel = -10;
        
         
     public ObjChao(){

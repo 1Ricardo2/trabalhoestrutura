@@ -31,7 +31,7 @@ public class Inimigos {
     
     public void update(){
         int i = aleatorio.nextInt(3);
-        y += 15;
+        y += 10;
         if(y>768){
             y = -100;
           System.out.println(i);
