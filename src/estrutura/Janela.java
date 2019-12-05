@@ -8,7 +8,7 @@ public class Janela extends JFrame {
         private Tela telaDeJogo;
 
     public Janela(){
-        super("Java T-Rex game");
+        super("Chronno Trigge Run");
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setLocation(0, 0);
@@ -16,8 +16,8 @@ public class Janela extends JFrame {
         telaDeJogo = new Tela();
         add(telaDeJogo);
 	addKeyListener(telaDeJogo);
-        /*setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setUndecorated(true);*/
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true);
        
     }
     public void iniciar(){

@@ -25,7 +25,7 @@ public Personagem(){
     PersonRun.addFrame(Resource.getResourceImage("src/resources/sprites/Chrono_run_balance1.png"));
     PersonRun.addFrame(Resource.getResourceImage("src/resources/sprites/Chrono_run_balance2.png"));
     col = new Rectangle();
-    score = 0;
+    score = 1000;
     
    }
    
@@ -65,6 +65,10 @@ public Personagem(){
         }
     
     */
+   public void resetar(){
+        x = 495;
+        score = 0;
+   }
    public void acoes(KeyEvent ke){
        
        
@@ -81,13 +85,44 @@ public Personagem(){
                 pos+=1;
                 
             }
-    }
+    }/*
+         if(pos == 0){
+                if(ke.getKeyCode() == KeyEvent.VK_RIGHT || ke.getKeyCode() == KeyEvent.VK_D ){
+                x = 495;
+                pos = 1;}
+         
+         } 
+             if(pos == 1){
+                if(ke.getKeyCode() == KeyEvent.VK_LEFT || ke.getKeyCode() == KeyEvent.VK_A ){
+                   x = 302;
+                   pos = 0;}
+                   if(ke.getKeyCode() == KeyEvent.VK_RIGHT || ke.getKeyCode() == KeyEvent.VK_D ){
+                   x = 688;
+                   pos = 2;
+               }
+         
+         } 
+             if(pos == 2){
+                if(ke.getKeyCode() == KeyEvent.VK_LEFT || ke.getKeyCode() == KeyEvent.VK_A ){
+                   x = 495;
+                   pos = 1;
+               }
+         
+         } */
+            
+            
+            
+            
+            
+            
+            
             
     if(ke.getKeyCode() == KeyEvent.VK_G){
              System.out.println(x);
      }
        
    }
+   
    
     public float getX() {
         return x;

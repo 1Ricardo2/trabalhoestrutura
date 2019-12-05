@@ -31,7 +31,7 @@ public class Inimigos {
     
     public void update(){
         int i = aleatorio.nextInt(3);
-        y += 10;
+        y += ObjChao.vel;
         if(y>768){
             y = -100;
           System.out.println(i);
@@ -53,10 +53,11 @@ public class Inimigos {
        col.y = y;
        col.width = Inimigo.getWidth();
        col.height = Inimigo.getHeight();
-       
-       
-        
+               
     }
+    public void resetar(){
+        y = -1500;
+   }
     public Rectangle getbound(){
             return col;
     }
